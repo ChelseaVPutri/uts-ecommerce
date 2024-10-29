@@ -3,7 +3,7 @@
 $dbhost = "localhost";
 $dbuser = "root";
 $dbpass = "";
-$dbname = "login_sample";
+$dbname = "ecommerce";
 $conn = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
 
 if(!$conn) {

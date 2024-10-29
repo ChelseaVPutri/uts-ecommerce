@@ -1,20 +1,18 @@
 <?php
 @include 'connection.php';
-if(isset($_POST["submit"])) {
+if(isset($_POST['submit'])) {
     $username = $_POST['username'];
     $password = md5($_POST['password']);
     $password_hash = password_hash($password, PASSWORD_DEFAULT);
-    $password = $_POST['password'];
-   
-    $select = "SELECT * FROM users WHERE username = '$username' && password = '$password'";
-    $result = mysqli_query($conn, $select);
+    $sql = "SELECT * FROM users WHERE username='$username' AND password = '$password'";
+    $result = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+    $count = mysqli_num_rows($result);
 
-    if(mysqli_num_rows($result) > 0) {
-        $error[] = "User already exist";
+    if($count == 1) {
+        header("Location: homepage/main_page.php");
     } else {
-        $insert = "INSERT INTO users (username, password) VALUES ('$username', '$password')";
-        mysqli_query($connection, $insert);
-        // header("Location: login.php");
+        echo "Incorrect name or password";
     }
 }
 ?>
@@ -58,7 +56,7 @@ if(isset($_POST["submit"])) {
                 </div>
 
                 
-                <button type="submit" name="submit" value="register">Register</button>
+                <button type="submit" name="submit" value="register">Login</button>
                 
                 <div class="inputField" id="separator">
                     <hr class="line">

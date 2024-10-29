@@ -1,6 +1,7 @@
 <?php
 @include 'connection.php';
 if(isset($_POST["submit"])) {
+    $email = $_POST['email'];
     $username = $_POST['username'];
     $password = md5($_POST['password']);
     $password_hash = password_hash($password, PASSWORD_DEFAULT);
@@ -12,8 +13,8 @@ if(isset($_POST["submit"])) {
     if(mysqli_num_rows($result) > 0) {
         $error[] = "User already exist";
     } else {
-        $insert = "INSERT INTO users (username, password) VALUES ('$username', '$password')";
-        mysqli_query($connection, $insert);
+        $insert = "INSERT INTO users (username, email, password) VALUES ('$username', '$email', '$password')";
+        mysqli_query($conn, $insert);
         header("Location: login.php");
     }
 }
