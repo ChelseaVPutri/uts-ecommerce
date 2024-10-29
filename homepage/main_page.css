@@ -94,6 +94,7 @@
   }
   
   .price {
+    text-align: left;
     color: #e74c3c;
     font-weight: bold;
   }
@@ -112,6 +113,9 @@
     justify-content: center;
     border-radius: 50%;
     cursor: pointer;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Add shadow for better visibility */
+    box-shadow: none;
+    text-decoration: none;
+    border-width: 0;
+    /* box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); */
   }
   
