@@ -45,6 +45,15 @@
     margin-top: 20px;
     font-size: 1.5em;
   }
+
+  #profile-text {
+    text-decoration: none;
+    color: black;
+  }
+
+  #profile-text:hover {
+    color: #e74c3c;
+  }
   
   .product-container {
     display: flex;
