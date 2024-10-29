@@ -1,0 +1,133 @@
+@import url(https://fonts.googleapis.com/css?family=Poppins);
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins';
+}
+
+body {
+    background-color: #f2f2f2;
+}
+
+.cart-container {
+    width: 90%;
+    max-width: 800px;
+    margin: 20px auto;
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background-color: #fff;
+    justify-content: center;
+}
+
+.back-button {
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: rgb(0, 0, 0);
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+h2 {
+    font-size: 20px;
+}
+
+.cart-items {
+    padding: 10px;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.select-all {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    border-top: 1px solid #ddd;
+}
+
+.cart-item img.item-image {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+.item-info {
+    flex: 1;
+}
+
+.store-name {
+    font-weight: bold;
+}
+
+.item-name {
+    color: #666;
+}
+
+.item-price {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.quantity-control {
+    display: flex;
+    align-items: center;
+}
+
+.quantity-control input {
+    width: 40px;
+    text-align: center;
+}
+
+.quantity-control button {
+    background-color: #ffa500;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.total-price {
+    font-weight: bold;
+}
+
+.remove-button {
+    background-color: #ffa500;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.cart-footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background-color: #ffa500;
+    color: white;
+}
+
+.checkout-button {
+    background-color: #ffa500;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
