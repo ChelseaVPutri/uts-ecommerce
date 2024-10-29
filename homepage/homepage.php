@@ -22,8 +22,7 @@ $fetch_product = $conn->query($fetch_product_query);
     </div>
     <input type="text" placeholder="Cari di Ventura" class="search-bar">
     <div class="icons">
-      <img src="Keranjang.svg" alt="Cart" class="icon">
-      <!-- <img src="Vector.svg" alt="Profile" class="icon"> -->
+      <a href="/uts/keranjang/keranjang.php"><img src="Keranjang.svg" alt="Cart" class="icon"></a>
       <a href="#" id="profile-text">Profile</a>
     </div>
   </div>
