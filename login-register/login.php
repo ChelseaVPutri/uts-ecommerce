@@ -12,7 +12,7 @@ if(isset($_POST['submit'])) {
     if($count == 1) {
         header("Location: homepage/main_page.php");
     } else {
-        echo "Incorrect name or password";
+        $error[] = "Username atau password salah";
     }
 }
 ?>
