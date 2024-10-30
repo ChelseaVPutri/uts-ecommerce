@@ -94,7 +94,7 @@ h2 {
 }
 
 .quantity-control input {
-    width: 40px;
+    width: 10px;
     text-align: center;
 }
 
@@ -104,6 +104,8 @@ h2 {
     border: none;
     padding: 5px 10px;
     cursor: pointer;
+    margin-left: 10px;
+    
 }
 
 .total-price {
