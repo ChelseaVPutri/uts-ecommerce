@@ -10,17 +10,21 @@ if(isset($_POST['submit'])) {
     $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
     $count = mysqli_num_rows($result);
     $data = $result->fetch_assoc();
-
-    if($count == 1) {
-        $_SESSION['username'] = $data['username'];
-        $_SESSION['user_id'] = $data['user_id'];
-        header("Location: /uts/homepage/homepage.php");
-    }
-    else if ($result->num_rows > 0 and $data['password'] != $password){
-        $error[] = "Username atau Password salah";
-    }
-    else {
-        $error[] = "Akun Tidak Ditemukan";
+    
+    try {
+        if($count == 1) {
+            $_SESSION['username'] = $data['username'];
+            $_SESSION['user_id'] = $data['user_id'];
+            header("Location: /uts/homepage/homepage.php");
+        }
+        else if ($result->num_rows > 0 and $data['password'] != $password){
+            $error[] = "Username atau Password salah";
+        }
+        else {
+            $error[] = "Akun Tidak Ditemukan";
+        }
+    } catch (mysqli_sql_exception) {
+        $error[] = "Username tidak boleh sama";
     }
 }
 ?>
