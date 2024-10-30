@@ -34,14 +34,14 @@ $fetch_product = $conn->query($fetch_product_query);
             if($fetch_product->num_rows > 0) {
               while($row = $fetch_product->fetch_assoc()) {
                 ?>
-                <form method="post">
-                  <div class="product-card">
-                      <img src="<?php echo $row['product_image']; ?>">
-                      <object name="name"><?php echo $row['product_name']; ?></object>
-                      <object name="price" class="price">Rp<?php echo number_format($row['product_price'], 0, ',', '.'); ?></object>
-                      <input type="submit" name="add_to_cart" value="+" class="add-icon">
-                  </div>
-                </form>
+                <div class="product-card">
+                    <a href="/uts/product-detail-page/halaman_produk.php?product_id=<?php echo $row['product_id']; ?>">
+                      <object name="product_image"><img src="<?php echo $row['product_image']; ?>"></object>
+                    </a>
+                    <object name="product_name"><p><?php echo $row['product_name']; ?></p></object>
+                    <object name="product_price"><p class="price">Rp<?php echo number_format($row['product_price'], 0, ',', '.'); ?></p></object>
+                    <button type="submit" name="add_to_cart" value="add-to-cart" class="add-icon">+</button>
+                </div>
                 <?php
                 }
             }

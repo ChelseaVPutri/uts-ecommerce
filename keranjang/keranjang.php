@@ -17,7 +17,9 @@
 <body>
 
     <header>
-        <button class="back-button">&#8592;</button>
+        <a href="/uts/homepage/homepage.php">
+            <button class="back-button">&#8592;</button>
+        </a>
         <h2 style="text-align: center;">Keranjang</h2>
     </header>
 
@@ -29,7 +31,7 @@
         </div> -->
 
         <div class="cart-item">
-            <input type="checkbox">
+            <!-- <input type="checkbox"> -->
             <img src="hand_sanitizer.png" alt="Klarens Hand Sanitizer" class="item-image">
             <div class="item-info">
                 <p class="store-name">Klarens Official</p>
@@ -39,15 +41,15 @@
                 <p>Rp150.000</p>
                 <div class="quantity-control">
                     <input type="number" value="1" min="1">
-                    <button>Update QTY</button>
+                    <button name="update_qty" style="margin-left: 10px;">Update QTY</button>
                 </div>
                 <p class="total-price">Rp150.000</p>
-                <button class="remove-button">Hapus</button>
+                <button class="remove-button" name="remove">Hapus</button>
             </div>
         </div>
 
         <div class="cart-item">
-            <input type="checkbox" checked>
+            <!-- <input type="checkbox" checked> -->
             <img src="keyboard.png" alt="keyboard" class="item-image">
             <div class="item-info">
                 <p class="store-name">TokoTeknoPro</p>
@@ -57,10 +59,10 @@
                 <p>Rp379.000</p>
                 <div class="quantity-control">
                     <input type="number" value="1" min="1">
-                    <button>Update QTY</button>
+                    <button name="update_qty" style="margin-left: 10px;">Update QTY</button>
                 </div>
                 <p class="total-price">Rp379.000</p>
-                <button class="remove-button">Hapus</button>
+                <button class="remove-button" name="remove">Hapus</button>
             </div>
         </div>
 
