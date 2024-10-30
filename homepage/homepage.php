@@ -29,24 +29,24 @@ $fetch_product = $conn->query($fetch_product_query);
 
   <h2 style="text-align: center;">Produk Rekomendasi</h2>
 
-    <form method="post">
-        <div class="product-container">
-            <?php
+  <div class="product-container">
+    <?php
             if($fetch_product->num_rows > 0) {
-                while($row = $fetch_product->fetch_assoc()) {
+              while($row = $fetch_product->fetch_assoc()) {
                 ?>
-                <div class="product-card">
-                    <img src="<?php echo $row['product_image']; ?>">
-                    <p><?php echo $row['product_name']; ?></p>
-                    <p class="price">Rp<?php echo number_format($row['product_price'], 0, ',', '.'); ?></p>
-                    <button type="submit" name="add_to_cart" value="add-to-cart" class="add-icon">+</button>
-                </div>
+                <form method="post">
+                  <div class="product-card">
+                      <img src="<?php echo $row['product_image']; ?>">
+                      <object name="name"><?php echo $row['product_name']; ?></object>
+                      <object name="price" class="price">Rp<?php echo number_format($row['product_price'], 0, ',', '.'); ?></object>
+                      <input type="submit" name="add_to_cart" value="+" class="add-icon">
+                  </div>
+                </form>
                 <?php
                 }
             }
             ?>
         </div>
-    </form>
 
 
 </body>
