@@ -36,10 +36,12 @@ $fetch_product = $conn->query($fetch_product_query);
                 while($row = $fetch_product->fetch_assoc()) {
                 ?>
                 <div class="product-card">
-                    <object name="product_image"><img src="<?php echo $row['product_image']; ?>"></object>
-                    <object name="product_name"><?php echo $row['product_name']; ?></object>
+                    <a href="/uts/product-detail-page/halaman_produk.php?product_id=<?php echo $row['product_id']; ?>">
+                      <object name="product_image"><img src="<?php echo $row['product_image']; ?>"></object>
+                    </a>
+                    <object name="product_name"><p><?php echo $row['product_name']; ?></p></object>
                     <object name="product_price"><p class="price">Rp<?php echo number_format($row['product_price'], 0, ',', '.'); ?></p></object>
-                    <button type="submit" name="add_to_cart" value="+" class="add-icon">+</button>
+                    <button type="submit" name="add_to_cart" value="add-to-cart" class="add-icon">+</button>
                 </div>
                 <?php
                 }
