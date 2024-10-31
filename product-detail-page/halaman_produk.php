@@ -1,18 +1,52 @@
 <?php 
 include("connection.php");
-
-if(isset($_GET['product_id'])) {
-    $product_id = $_GET['product_id'];
-
-    $fetch_product_query = "SELECT * FROM product WHERE product_id = ?";
-    $stmt = $conn->prepare($fetch_product_query);
-    $stmt->bind_param("i", $product_id);
-    $stmt->execute();
-    $result = $stmt->get_result();
-
-    if($result->num_rows > 0) {
-        $product = $result->fetch_assoc();
+session_start();
+if($_SESSION['is_login']){
+    $user_id = $_SESSION['user_id'];
+    $masuk = "";
+    
+    if(isset($_GET['product_id'])) {
+        $_SESSION['product_id']=$_GET['product_id'];
+        $product_id = $_SESSION['product_id'];
+    
+        $fetch_product_query = "SELECT * FROM product WHERE product_id = ?";
+        $stmt = $conn->prepare($fetch_product_query);
+        $stmt->bind_param("i", $product_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+    
+        if($result->num_rows > 0) {
+            $product = $result->fetch_assoc();
+        }
     }
+    else if(isset($_SESSION['product_id'])){
+        $product_id = $_SESSION['product_id'];
+    
+        $fetch_product_query = "SELECT * FROM product WHERE product_id = ?";
+        $stmt = $conn->prepare($fetch_product_query);
+        $stmt->bind_param("i", $product_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+    
+        if($result->num_rows > 0) {
+            $product = $result->fetch_assoc();
+        }
+    }
+    
+    if(isset($_POST['add_cart'])){
+        
+        $qty = $_POST['qty_add'];
+        $sql = "INSERT INTO cart (user_id, product_id, cart_qty) VALUES ('$user_id','$product_id','$qty')";
+        if($conn->query($sql)){
+            $masuk = "berhasil masuk kedalam cart";
+        }
+        else{
+            $masuk = "data tidak masuk";
+        }
+    }
+}
+else{
+    header("Location: /uts/login-register/login.php");
 }
 ?>
 
@@ -40,7 +74,7 @@ if(isset($_GET['product_id'])) {
             </div>
             <div class="product-details">
                 <object name="product_name">
-                    <h2><?php echo $product['product_name']?></h2>
+                    <h2><?php echo $product['product_name'];?></h2>
                 </object>
                 <object name="product_price">
                     <p class="price">Rp<?php echo number_format($product['product_price'], 0, ',', '.'); ?></p>
@@ -51,10 +85,12 @@ if(isset($_GET['product_id'])) {
                 </p>
                 
                 <div class="quantity-section">
-                    <input type="number" value="1" min="1" class="quantity-input">
-                    <button class="update-button">Update QTY</button>
-                    <button class="cart-button">Masukkan ke keranjang</button>
+                    <form action="halaman_produk.php" method="post">
+                        <input class="quantity-input" type="number" value="1" name="qty_add">
+                        <button class="cart-button" name="add_cart">Masukkan ke keranjang</button>
+                    </form>
                 </div>
+                <i style="color: green;"><?php echo $masuk;?></i>
             </div>
         </div>
     </div>
