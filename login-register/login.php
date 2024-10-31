@@ -70,6 +70,7 @@ if(isset($_POST['submit'])) {
         if($count > 0) {
             $_SESSION['username'] = $row['username'];
             $_SESSION['user_id'] = $row['user_id'];
+            $_SESSION['email'] = $row['email'];
             $_SESSION['is_login'] = true;
             header("Location: /uts/homepage/homepage.php");
         }
