@@ -1,6 +1,14 @@
 <?php 
 @include 'connection.php';
-
+session_start();
+if($_SESSION['is_login']){
+    $id = $_SESSION['user_id'];
+    $fetch_user_query = "SELECT * FROM cart WHERE user_id = $id";
+    $fetch_user = $conn->query($fetch_user_query);
+}
+else{
+    header("Location: /uts/login-register/login.php");
+}
 
 ?>
 
@@ -29,48 +37,30 @@
             <input type="checkbox" id="select-all">
             <label for="select-all">Pilih Semua</label>
         </div> -->
-
-        <div class="cart-item">
-            <!-- <input type="checkbox"> -->
-            <img src="hand_sanitizer.png" alt="Klarens Hand Sanitizer" class="item-image">
-            <div class="item-info">
-                <p class="store-name">Klarens Official</p>
-                <p class="item-name">Hand sanitizer Klarenss Refill Pink Rose 500ml Twin Pack</p>
-            </div>
-            <div class="item-price">
-                <p>Rp150.000</p>
-                <div class="quantity-control">
-                    <input type="number" value="1" min="1">
-                    <button name="update_qty" style="margin-left: 10px;">Update QTY</button>
-                </div>
-                <p class="total-price">Rp150.000</p>
-                <button class="remove-button" name="remove">Hapus</button>
-            </div>
-        </div>
-
-        <div class="cart-item">
-            <!-- <input type="checkbox" checked> -->
-            <img src="keyboard.png" alt="keyboard" class="item-image">
-            <div class="item-info">
-                <p class="store-name">TokoTeknoPro</p>
-                <p class="item-name">Press Play Shibuya PBT Dye Sub Keycap Set 120 Keys Japanese Root</p>
-            </div>
-            <div class="item-price">
-                <p>Rp379.000</p>
-                <div class="quantity-control">
-                    <input type="number" value="1" min="1">
-                    <button name="update_qty" style="margin-left: 10px;">Update QTY</button>
-                </div>
-                <p class="total-price">Rp379.000</p>
-                <button class="remove-button" name="remove">Hapus</button>
-            </div>
-        </div>
-
-    </div>
-
-    <div class="cart-footer">
-        <p>Total: <span>Rp379.000</span></p>
-        <button class="checkout-button">Checkout</button>
+        <?php
+            while($rowcart = $fetch_user->fetch_assoc()){
+                $pid = $rowcart['product_id'];
+                $fetch_product_query = "SELECT * FROM product WHERE product_id = $pid";
+                $fetch_product = $conn->query($fetch_product_query);
+                if($fetch_product->num_rows > 0) {
+                    $row = $fetch_product->fetch_assoc();
+                  ?>
+                    <div class="cart-item">
+                        <!-- <input type="checkbox"> -->
+                        <img src="<?php echo $row['product_image'] ?>" alt="<?php echo $row['product_name'] ?>" class="item-image">
+                        <div class="item-info">
+                            <p class="store-name"><?php echo $row['product_name'] ?></p>
+                        </div>
+                        <div class="item-price">
+                            <p>Rp<?php echo number_format($row['product_price'], 0, ',', '.'); ?></p>
+                            <p class="total-price">Rp<?php $total = $row['product_price'] * $rowcart['cart_qty'];echo number_format($total, 0, ',', '.'); ?></p>
+                            <a class="remove-button" href="delete.php?id=<?php echo $pid?>">Hapus</a>
+                        </div>
+                    </div>
+            <?php
+                  }
+              }
+              ?>
     </div>
 </div>
 
