@@ -6,17 +6,18 @@ if(isset($_POST['submit'])) {
     $password = md5($_POST['password']);
     $password_hash = password_hash($password, PASSWORD_DEFAULT);
     $sql = "SELECT * FROM users WHERE username='$username'";
-    $result = mysqli_query($conn, $sql);
+    $result = $conn->query($sql);
     $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
     $count = mysqli_num_rows($result);
-    $data = $result->fetch_assoc();
     
-    if($count == 1) {
-        $_SESSION['username'] = $data['username'];
-        $_SESSION['user_id'] = $data['user_id'];
+    if($count > 0) {
+        $data = $result->fetch_assoc();
+        $_SESSION['username'] = $row['username'];
+        $_SESSION['user_id'] = $row['user_id'];
+        $_SESSION['is_login'] = true;
         header("Location: /uts/homepage/homepage.php");
     }
-    else if ($result->num_rows > 0 and $data['password'] != $password){
+    else if ($count > 0 and $data['password'] != $password){
         $error[] = "Username atau Password salah";
     }
     else {
