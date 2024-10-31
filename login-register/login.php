@@ -11,7 +11,6 @@ if(isset($_POST['submit'])) {
     $count = mysqli_num_rows($result);
     
     if($count > 0) {
-        $data = $result->fetch_assoc();
         $_SESSION['username'] = $row['username'];
         $_SESSION['user_id'] = $row['user_id'];
         $_SESSION['is_login'] = true;
