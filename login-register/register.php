@@ -1,5 +1,8 @@
 <?php
 @include 'connection.php';
+if(isset($_SESSION['is_login'])){
+    header("Location: /uts/homepage/homepage.php");
+}
 if(isset($_POST["submit"])) {
     $email = $_POST['email'];
     $username = $_POST['username'];
@@ -15,7 +18,7 @@ if(isset($_POST["submit"])) {
         mysqli_query($conn, $insert);
         header("Location: login.php");
     } catch (mysqli_sql_exception) {
-        $error[] = "Username tidak boleh sama";
+        $error[] = "Username atau email sudah digunakan";
     }
     // if(mysqli_num_rows($result) > 0) {
     //     $error[] = "Pengguna telah terdaftar";

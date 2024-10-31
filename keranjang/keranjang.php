@@ -38,8 +38,6 @@ else{
             <label for="select-all">Pilih Semua</label>
         </div> -->
         <?php
-        
-        
             while($rowcart = $fetch_user->fetch_assoc()){
                 $pid = $rowcart['product_id'];
                 $fetch_product_query = "SELECT * FROM product WHERE product_id = $pid";

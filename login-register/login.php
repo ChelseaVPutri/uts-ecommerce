@@ -1,27 +1,35 @@
 <?php
 @include 'connection.php';
 session_start();
-if(isset($_POST['submit'])) {
-    $username = $_POST['username'];
-    $password = md5($_POST['password']);
-    $password_hash = password_hash($password, PASSWORD_DEFAULT);
-    $sql = "SELECT * FROM users WHERE username='$username'";
-    $result = $conn->query($sql);
-    $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-    $count = mysqli_num_rows($result);
-    
-    if($count > 0) {
-        $_SESSION['username'] = $row['username'];
-        $_SESSION['user_id'] = $row['user_id'];
-        $_SESSION['is_login'] = true;
-        header("Location: /uts/homepage/homepage.php");
-    }
-    else if ($count > 0 and $data['password'] != $password){
-        $error[] = "Username atau Password salah";
-    }
-    else {
-        $error[] = "Akun Tidak Ditemukan";
-    }
+if(isset($_SESSION['is_login'])){
+    header("Location: /uts/homepage/homepage.php");
+}else{
+    if(isset($_POST['submit'])) {
+        $username = $_POST['username'];
+        $password = md5($_POST['password']);
+        $password_hash = password_hash($password, PASSWORD_DEFAULT);
+        $sql = "SELECT * FROM users WHERE username='$username'";
+        $result = $conn->query($sql);
+        $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+        $count = mysqli_num_rows($result);
+        
+        if($username=="admin") {
+            header("Location: /uts/kelola-produk/kelola_produk.php");
+        }
+        else if ($count > 0){
+            $_SESSION['username'] = $row['username'];
+            $_SESSION['user_id'] = $row['user_id'];
+            $_SESSION['email'] = $row['email'];
+            $_SESSION['is_login'] = true;
+            header("Location: /uts/homepage/homepage.php");
+        }
+        else if ($count > 0 and $data['password'] != $password){
+            $error[] = "Username atau Password salah";
+        }
+        else {
+            $error[] = "Akun Tidak Ditemukan";
+        }
+}
 }
 ?>
 

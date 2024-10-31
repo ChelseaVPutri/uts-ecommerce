@@ -86,7 +86,7 @@ else{
                 
                 <div class="quantity-section">
                     <form action="halaman_produk.php" method="post">
-                        <input class="quantity-input" type="number" value="1" name="qty_add">
+                        <input class="quantity-input" type="number" value="1" min="1" name="qty_add">
                         <button class="cart-button" name="add_cart">Masukkan ke keranjang</button>
                     </form>
                 </div>
