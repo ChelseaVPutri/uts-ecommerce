@@ -43,7 +43,7 @@ else{
                       <a href="/uts/product-detail-page/halaman_produk.php?product_id=<?php echo $row['product_id']; ?>">
                         <img src="<?php echo $row['product_image']; ?>">
                         <p><?php echo $row['product_name']; ?></p>
-                        <p class="price">Rp<?php echo number_format($row['product_price'], 0, ',', '.'); ?></p></object>
+                        <p class="price" style="color: #e74c3c; text-align: center;">Rp<?php echo number_format($row['product_price'], 0, ',', '.'); ?></p></object>
                       </a>
                     </div>
                   <?php
