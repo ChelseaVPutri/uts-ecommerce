@@ -7,16 +7,21 @@ if(isset($_POST["submit"])) {
     $password_hash = password_hash($password, PASSWORD_DEFAULT);
     $password = $_POST['password'];
    
-    $select = "SELECT * FROM users WHERE username = '$username' && password = '$password' && email = '$email'";
-    $result = mysqli_query($conn, $select);
+    // $select = "SELECT * FROM users WHERE username = '$username' && password = '$password' && email = '$email'";
+    // $result = mysqli_query($conn, $select);
 
-    if(mysqli_num_rows($result) > 0) {
-        $error[] = "Pengguna telah terdaftar";
-    } else {
+    try {
         $insert = "INSERT INTO users (username, email, password) VALUES ('$username', '$email', '$password')";
         mysqli_query($conn, $insert);
         header("Location: login.php");
+    } catch (mysqli_sql_exception) {
+        $error[] = "Username tidak boleh sama";
     }
+    // if(mysqli_num_rows($result) > 0) {
+    //     $error[] = "Pengguna telah terdaftar";
+    // } else {
+        
+    // }
 }
 ?>
 
