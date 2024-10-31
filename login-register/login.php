@@ -3,6 +3,56 @@
 require_once("vendor/autoload.php");
 date_default_timezone_set("Asia/Jakarta");
 session_start();
+
+$client_id = '666998737758-bf769ebeo2phad5nkp3rmk4crd09bhdn.apps.googleusercontent.com';
+$client_secret = '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';
+$redirect_uri = 'http://localhost/uts/login-register/login.php';
+
+$client = new Google_Client();
+$client->setClientId($client_id);
+$client->setClientSecret($client_secret);
+$client->setRedirectUri($redirect_uri);
+$client->createAuthUrl();
+
+$client->addScope('email');
+$client->addScope('profile');
+
+if(isset($_GET['code'])) {
+    $token = $client->fetchAccessTokenWithAuthCode($_GET['code']);
+    if(!isset($token['error'])) {
+        $client->setAccessToken($token['access_token']);
+        $service = new Google_Service_Oauth2($client);
+        $profile = $service->userinfo->get();
+
+        $google_name = $profile['name'];
+        $google_email = $profile['email'];
+        $google_id = $profile['id'];
+        $current_time = date('Y-m-d H:i:s');
+
+        //id exist in database -> update
+        //id doesnt exist before -> insert/register
+        $check_query = "SELECT * FROM users WHERE oauth_id = '.$google_id.'";
+        $check = $conn->query("$check_query");
+        $user_data = $check->fetch_object();
+
+        if($user_data) {
+            $update_user_query = "UPDATE users SET username = '$google_name', email = '$google_name', last_login = '$current_time' WHERE oauth_id = '$google_id'";
+            $update_user = $conn->query($update_user_query);
+        } else {
+            $insert_user_query = "INSERT INTO users (username, email, oauth_id, last_login) VALUE ('$google_name', '$google_email', '$google_id', '$current_time')";
+            $insert_user = $conn->query($insert_user_query);
+        }
+
+        $_SESSION['is_login'] = true;
+        $_SESSION['access_token'] = $token['access_token'];
+        $_SESSION['username'] = $google_name;
+        header("Location: /uts/homepage/homepage.php");
+    } else {
+        echo "Login gagal";
+    }
+}
+
+
 if(isset($_POST['submit'])) {
     $username = $_POST['username'];
     $password = md5($_POST['password']);
@@ -12,18 +62,25 @@ if(isset($_POST['submit'])) {
     $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
     $count = mysqli_num_rows($result);
     
-    if($count > 0) {
-        $_SESSION['username'] = $row['username'];
-        $_SESSION['user_id'] = $row['user_id'];
-        $_SESSION['is_login'] = true;
-        header("Location: /uts/homepage/homepage.php");
+    $captcha = $_POST['captcha'];
+    $captcha_code = $_POST['captcha-random'];
+    if($captcha != $captcha_code) {
+        echo "Captcha salah";
+    } else {
+        if($count > 0) {
+            $_SESSION['username'] = $row['username'];
+            $_SESSION['user_id'] = $row['user_id'];
+            $_SESSION['is_login'] = true;
+            header("Location: /uts/homepage/homepage.php");
+        }
+        else if ($count > 0 and $data['password'] != $password){
+            $error[] = "Username atau Password salah";
+        }
+        else {
+            $error[] = "Akun Tidak Ditemukan";
+        }
     }
-    else if ($count > 0 and $data['password'] != $password){
-        $error[] = "Username atau Password salah";
-    }
-    else {
-        $error[] = "Akun Tidak Ditemukan";
-    }
+
 }
 ?>
 
