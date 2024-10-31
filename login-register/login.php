@@ -46,6 +46,7 @@ if(isset($_GET['code'])) {
         $_SESSION['is_login'] = true;
         $_SESSION['access_token'] = $token['access_token'];
         $_SESSION['username'] = $google_name;
+        $_SESSION['email'] = $google_email;
         header("Location: /uts/homepage/homepage.php");
     } else {
         echo "Login gagal";
