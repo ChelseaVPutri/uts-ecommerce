@@ -169,6 +169,8 @@ span{
     width: 100%;
     height: 30px;
     padding: 10px;
+    padding-top: 20px;
+    margin-top: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -176,9 +178,15 @@ span{
 }
 
 #google {
-    width: 89px;
-    margin-top: 10px;
+    width: 100%;
+    margin-top: 20px;
     margin-bottom: 0;
+    padding-top: 20px;
+}
+
+#captcha-rand:focus {
+    outline: none;
+    border: none;
 }
 
 /* select {
