@@ -1,17 +1,16 @@
 <?php 
-@include 'connection.php';
+@include '../service/connection.php';
 session_start();
 if($_SESSION['is_login']){
     $id = $_SESSION['user_id'];
+    $folder = "/uts/assets/";
     $fetch_user_query = "SELECT * FROM cart WHERE user_id = $id";
     $fetch_user = $conn->query($fetch_user_query);
 }
 else{
     header("Location: /uts/login-register/login.php");
 }
-
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -20,7 +19,7 @@ else{
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Shopping Cart</title>
 <link rel="stylesheet" href="keranjang.css">
-<link rel="icon" href="Logo_Ventura.png">
+<link rel="icon" href="/uts/assets/Logo_Ventura.png">
 </head>
 <body>
 
@@ -47,14 +46,14 @@ else{
                   ?>
                     <div class="cart-item">
                         <!-- <input type="checkbox"> -->
-                        <img src="<?php echo $row['product_image'] ?>" alt="<?php echo $row['product_name'] ?>" class="item-image">
+                        <img src="<?php echo $folder.$row['product_image'] ?>" alt="<?php echo $row['product_name'] ?>" class="item-image">
                         <div class="item-info">
                             <p class="store-name"><?php echo $row['product_name'] ?></p>
                         </div>
                         <div class="item-price">
-                            <p>Rp<?php echo number_format($row['product_price'], 0, ',', '.'); ?></p>
+                            <p>Rp<?php echo number_format($row['product_price'], 0, ',', '.'); ?> x <?php echo $rowcart['cart_qty'] ?> =</p>
                             <p class="total-price">Rp<?php $total = $row['product_price'] * $rowcart['cart_qty'];echo number_format($total, 0, ',', '.'); ?></p>
-                            <a class="remove-button" href="delete.php?id=<?php echo $pid?>">Hapus</a>
+                            <a class="remove-button" href="/uts/service/delete_cart.php?id=<?php echo $pid?>">Hapus</a>
                         </div>
                     </div>
             <?php

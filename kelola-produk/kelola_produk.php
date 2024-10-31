@@ -1,21 +1,25 @@
 <?php
-include "service/connection.php";
+include "../service/connection.php";
 session_start();
-if (isset($_SESSION['is_login']) && $_SESSION['username']=="admin") {
-    if(isset($_GET['add'])){
-        $pdname = $_GET['product_name'];
-        $pdprice = $_GET['product_price'];
-        $filename = $_FILES['upload']['name'];
-        $filetmpname = $_FILES['upload']['tmp_name'];
-        $folder = 'uts/assets/img/';
-
-        move_uploaded_file($filetmpname, $folder.$filename);
-
-        $sql = "INSERT INTO product (name, price, image) VALUES ('$pdname','$pdprice','$filename')";
+if (isset($_SESSION['is_login'])) {
+    if(isset($_POST['add'])){
+        $folderr = '../assets/';
+        $pdname = $_POST['product_name'];
+        $pdprice = $_POST['product_price'];
+        $filename = $_FILES['image']['name'];
+        $filetmpname = $_FILES['image']['tmp_name'];
+    
+        move_uploaded_file($filetmpname, $folderr.$filename);
+    
+        $sql = "INSERT INTO product (product_name, product_price, product_image) VALUES ('$pdname','$pdprice','$filename')";
+        mysqli_query($conn,$sql);
     }
 }else{
-    header("Location: uts/login-register/login.php");
+    header("Location: /uts/login-register/login.php");
 }
+$folder = '/uts/assets/';
+$query = "SELECT * FROM product";
+$result = $conn->query($query);
 ?>
 
 <!DOCTYPE html>
@@ -28,45 +32,41 @@ if (isset($_SESSION['is_login']) && $_SESSION['username']=="admin") {
 </head>
 <body>
     <header>
-        <button class="back-button">&#8592;</button>
+        <a class="back-button" href="/uts/service/destroy.php">&#8592;</a>
         <h2 style="text-align: center;">detail produk</h2>
     </header>
 
     <div class="container">  
         <section class="add-product">
             <h2>Tambah Produk</h2>
-            <form method="GET">
+            <form action="kelola_produk.php" method="post" enctype="multipart/form-data">
                 <input type="text" name="product_name" placeholder="Masukkan nama produk" required>
                 <input type="number" name="product_price" placeholder="Masukkan harga produk" required>
-                <input type="file" name="product_image" placeholder="Masukkan gambar produk">
+                <input type="file" name="image" accept="image/*" required>
                 <button type="submit" class="add-button" name="add">Tambah Produk</button>
             </form>
         </section>
         
         <section class="product-list">
-            <div class="product-card">
-                <img src="chair.png" alt="Product Image">
-                <div class="product-info">
-                    <p>Frasser Kursi Kantor Jaring Kursi Staff Kursi...</p>
-                    <p class="price">Rp259.900</p>
-                    <div class="product-actions">
-                        <button class="delete-button">Hapus</button>
-                        <button class="view-button">Lihat</button>
+            <?php
+            if ($result->num_rows > 0){
+                while($row = $result->fetch_assoc()){
+                    $filename = $row['product_image'];
+                    ?>
+                    <div class="product-card">
+                        <img src="<?php echo $folder.$filename ?>" alt="Product Image">
+                        <div class="product-info">
+                            <p><?php echo $row['product_name'] ?></p>
+                            <p class="price" >Rp<?php echo number_format($row['product_price'], 0, ',', '.'); ?></p>
+                            <div class="product-actions">
+                                <a class="delete-button" href="/uts/service/delete_product.php?id=<?php echo $row['product_id']?>">Hapus</a>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <img src="chair.png" alt="Product Image">
-                <div class="product-info">
-                    <p>Frasser Kursi Kantor Jaring Kursi Staff Kursi...</p>
-                    <p class="price">Rp259.900</p>
-                    <div class="product-actions">
-                        <button class="delete-button">Hapus</button>
-                        <button class="view-button">Lihat</button>
-                    </div>
-                </div>
-            </div>
+            <?php
+                }
+            }
+            ?>
         </section>
     </div>
 </body>

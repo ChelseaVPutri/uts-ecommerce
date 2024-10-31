@@ -1,5 +1,5 @@
 <?php
-@include 'connection.php';
+@include '../service/connection.php';
 if(isset($_SESSION['is_login'])){
     header("Location: /uts/homepage/homepage.php");
 }

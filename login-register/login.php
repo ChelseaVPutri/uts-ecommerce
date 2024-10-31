@@ -1,5 +1,5 @@
 <?php
-@include 'connection.php';
+@include '../service/connection.php';
 session_start();
 if(isset($_SESSION['is_login'])){
     header("Location: /uts/homepage/homepage.php");
@@ -14,6 +14,8 @@ if(isset($_SESSION['is_login'])){
         $count = mysqli_num_rows($result);
         
         if($username=="admin") {
+            $_SESSION['is_login'] = true;
+            $_SESSION['username'] = $username;
             header("Location: /uts/kelola-produk/kelola_produk.php");
         }
         else if ($count > 0){

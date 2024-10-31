@@ -1,5 +1,5 @@
 <?php
-include "service/connection.php";
+include "../service/connection.php";
 session_start();
 if($_SESSION['is_login']){
   $usernama = $_SESSION['username'];
@@ -30,7 +30,7 @@ else{
       <div class="profile-name"><?php echo $usernama ?></div>
       <div class="profile-email"><?= $email?></div>
       <a href="/uts/keranjang/keranjang.php" class="button1">Keranjang</a>
-      <a href="service/destroy.php" class="button1">Logout</a>
+      <a href="/uts/service/destroy.php" class="button1">Logout</a>
     </div>
   </div>
 </body>

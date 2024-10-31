@@ -1,5 +1,5 @@
 <?php 
-include("connection.php");
+include("../service/connection.php");
 session_start();
 if($_SESSION['is_login']){
     $user_id = $_SESSION['user_id'];
