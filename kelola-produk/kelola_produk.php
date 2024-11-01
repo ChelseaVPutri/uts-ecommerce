@@ -1,21 +1,17 @@
 <?php
 include "../service/connection.php";
 session_start();
-if (isset($_SESSION['is_login'])) {
-    if(isset($_POST['add'])){
-        $folderr = '../assets/';
-        $pdname = $_POST['product_name'];
-        $pdprice = $_POST['product_price'];
-        $filename = $_FILES['image']['name'];
-        $filetmpname = $_FILES['image']['tmp_name'];
-    
-        move_uploaded_file($filetmpname, $folderr.$filename);
-    
-        $sql = "INSERT INTO product (product_name, product_price, product_image) VALUES ('$pdname','$pdprice','$filename')";
-        mysqli_query($conn,$sql);
-    }
-}else{
-    header("Location: /uts/login-register/login.php");
+if(isset($_POST['add'])){
+    $folderr = '../assets/';
+    $pdname = $_POST['product_name'];
+    $pdprice = $_POST['product_price'];
+    $filename = $_FILES['image']['name'];
+    $filetmpname = $_FILES['image']['tmp_name'];
+
+    move_uploaded_file($filetmpname, $folderr.$filename);
+
+    $sql = "INSERT INTO product (product_name, product_price, product_image) VALUES ('$pdname','$pdprice','$filename')";
+    mysqli_query($conn,$sql);
 }
 $folder = '/uts/assets/';
 $query = "SELECT * FROM product";
@@ -29,11 +25,12 @@ $result = $conn->query($query);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product Management</title>
     <link rel="stylesheet" href="assets/kelola_produk.css">
+    <link rel="icon" href="/uts/assets/Logo_Ventura.png">
 </head>
 <body>
     <header>
         <a class="back-button" href="/uts/service/destroy.php">&#8592;</a>
-        <h2 style="text-align: center;">detail produk</h2>
+        <h2 style="text-align: center;">Kelola Produk</h2>
     </header>
 
     <div class="container">  

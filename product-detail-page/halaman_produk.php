@@ -4,6 +4,7 @@ session_start();
 if($_SESSION['is_login']){
     $user_id = $_SESSION['user_id'];
     $masuk = "";
+    $folder = "/uts/assets/";
     
     if(isset($_GET['product_id'])) {
         $_SESSION['product_id']=$_GET['product_id'];
@@ -70,7 +71,7 @@ else{
     <div class="container">
         <div class="product-section">
             <div class="product-image">
-                <img src="<?php echo $product['product_image']; ?>" alt="<?php echo $product['product_name']; ?>">
+                <img src="<?php echo $folder.$product['product_image']; ?>" alt="<?php echo $product['product_name']; ?>">
             </div>
             <div class="product-details">
                 <object name="product_name">

@@ -1,13 +1,21 @@
 <?php 
 @include '../service/connection.php';
 session_start();
-if($_SESSION['is_login']){
+if($_SESSION['is_login'] && $_SESSION['oauth_id']){
+    // $id = $_SESSION['user_id'];
+    $oauth_id = $_SESSION['oauth_id'];
+    $folder = "/uts/assets/";
+    $fetch_user_query = "SELECT cart.cart_id, users.user_id, users.oauth_id, cart.product_id, cart.cart_qty
+    FROM cart JOIN users ON cart.user_id = users.user_id
+    JOIN product ON cart.product_id = product.product_id
+    WHERE users.oauth_id = '$oauth_id'";
+    $fetch_user = $conn->query($fetch_user_query);
+} elseif($_SESSION['is_login'] && $_SESSION['user_id']) {
     $id = $_SESSION['user_id'];
     $folder = "/uts/assets/";
     $fetch_user_query = "SELECT * FROM cart WHERE user_id = $id";
     $fetch_user = $conn->query($fetch_user_query);
-}
-else{
+} else {
     header("Location: /uts/login-register/login.php");
 }
 ?>

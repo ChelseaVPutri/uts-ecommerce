@@ -27,26 +27,28 @@ if(isset($_GET['code'])) {
         $google_name = $profile['name'];
         $google_email = $profile['email'];
         $google_id = $profile['id'];
+        $token = $token['access_token'];
         $current_time = date('Y-m-d H:i:s');
 
         //id exist in database -> update
         //id doesnt exist before -> insert/register
-        $check_query = "SELECT * FROM users WHERE oauth_id = '.$google_id.'";
+        $check_query = "SELECT * FROM users WHERE oauth_id = $google_id";
         $check = $conn->query("$check_query");
         $user_data = $check->fetch_object();
 
         if($user_data) {
-            $update_user_query = "UPDATE users SET username = '$google_name', email = '$google_name', last_login = '$current_time' WHERE oauth_id = '$google_id'";
+            $_SESSION['user_id'] = $user_data->user_id;
+            $update_user_query = "UPDATE users SET username = '$google_name', email = '$google_email', last_login = '$current_time' WHERE oauth_id = '$google_id'";
             $update_user = $conn->query($update_user_query);
         } else {
-            $insert_user_query = "INSERT INTO users (username, email, oauth_id, last_login) VALUE ('$google_name', '$google_email', '$google_id', '$current_time')";
+            $insert_user_query = "INSERT INTO users (username, email, password, oauth_id, last_login) VALUE ('$google_name', '$google_email', '$token', '$google_id', '$current_time')";
             $insert_user = $conn->query($insert_user_query);
         }
 
         $_SESSION['is_login'] = true;
-        $_SESSION['access_token'] = $token['access_token'];
         $_SESSION['username'] = $google_name;
         $_SESSION['email'] = $google_email;
+        $_SESSION['oauth_id'] = $google_id;
         header("Location: /uts/homepage/homepage.php");
     } else {
         echo "Login gagal";
@@ -66,15 +68,17 @@ if(isset($_POST['submit'])) {
     $captcha = $_POST['captcha'];
     $captcha_code = $_POST['captcha-random'];
     if($captcha != $captcha_code) {
-            $_SESSION['is_login'] = true;
-            $_SESSION['username'] = $username;
-        echo "Captcha salah";
+        $error[] = "Captcha salah";
     } else {
-        if($count > 0) {
+        if ($count > 0 and $username == "admin"){
+            header("Location: /uts/kelola-produk/kelola_produk.php");
+        }
+        else if($count > 0) {
             $_SESSION['username'] = $row['username'];
             $_SESSION['user_id'] = $row['user_id'];
             $_SESSION['email'] = $row['email'];
             $_SESSION['is_login'] = true;
+            $_SESSION['oauth_id'] = $row['oauth_id'];
             header("Location: /uts/homepage/homepage.php");
         }
         else if ($count > 0 and $data['password'] != $password){
