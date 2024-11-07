@@ -58,7 +58,8 @@
   }
   
   .product-container {
-    display: flex;
+    display: grid;
+    grid-template-columns: auto auto auto auto;
     overflow-x: auto;
     padding: 20px 0;
     gap: 15px;
