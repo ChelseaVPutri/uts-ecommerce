@@ -46,6 +46,7 @@ if(isset($_GET['code'])) {
         }
 
         $_SESSION['is_login'] = true;
+        $_SESSION['user_id'] = $user_data->user_id;
         $_SESSION['username'] = $google_name;
         $_SESSION['email'] = $google_email;
         $_SESSION['oauth_id'] = $google_id;

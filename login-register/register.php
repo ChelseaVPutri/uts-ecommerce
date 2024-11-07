@@ -51,6 +51,7 @@ if(isset($_GET['code'])) {
         }
 
         $_SESSION['is_login'] = true;
+        $_SESSION['user_id'] = $conn->insert_id;
         $_SESSION['access_token'] = $token['access_token'];
         $_SESSION['username'] = $google_name;
         header("Location: /uts/homepage/homepage.php");

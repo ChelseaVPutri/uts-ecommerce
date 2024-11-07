@@ -75,7 +75,7 @@ else{
             </div>
             <div class="product-details">
                 <object name="product_name">
-                    <h2><?php echo $product['product_name'];?></h2>
+                    <h2><?php echo $product['product_name']; echo $user_id;?></h2>
                 </object>
                 <object name="product_price">
                     <p class="price">Rp<?php echo number_format($product['product_price'], 0, ',', '.'); ?></p>
