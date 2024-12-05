@@ -141,6 +141,11 @@ form input[type="file"]{
     color: #f39c12;
 }
 
+.category {
+    font-weight: bold;
+    color: #f39c12;
+}
+
 .product-actions {
     display: flex;
     gap: 10px;
