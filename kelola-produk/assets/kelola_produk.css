@@ -148,7 +148,8 @@ form input[type="file"]{
 }
 
 .delete-button,
-.view-button {
+.view-button
+.stock-button {
     border: none;
     padding: 5px 10px;
     border-radius: 5px;
@@ -163,4 +164,8 @@ form input[type="file"]{
 
 .view-button {
     background-color: #f39c12;
+}
+
+.stock-button {
+    background-color: lightgreen;
 }
