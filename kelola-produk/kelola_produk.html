@@ -20,7 +20,13 @@
                 <input type="number" placeholder="Masukkan harga produk" required>
                 <input type="file" placeholder="Masukkan gambar produk">
                 <input type="number" placeholder="Masukan stock produk" required>
-                <input type="text" placeholder="Masukan kategori produk" required>
+                <select name="kategori" id="kategori" aria-placeholder="pilih kategori" style="color: grey;">
+                    <option value="" disabled selected>pilih kategori</option>
+                    <option value="kategori[1]">kategori 1</option>
+                    <option value="kategori[2]">kategori 2</option>
+                    <option value="kategori[3]">kategori 3</option>
+                    <option value="kategori[4]">kategori 4</option>
+                </select>
                 <input type="file" id="product-image-upload" accept="image/*" hidden>
                 <button type="submit" class="add-button">Tambah Produk</button>
             </form>
