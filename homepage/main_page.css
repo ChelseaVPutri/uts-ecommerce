@@ -48,6 +48,35 @@
     font-size: 1.5em;
   }
 
+ .category-container {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    overflow-x: auto;
+    padding: 20px 0;
+    gap: 15px;
+    justify-content: center;
+  }
+
+  .button-card{
+    background-color: #ff6600; 
+    border: none;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 8px;
+    width: 150px;
+    opacity: 0.6;
+    transition: 0.3s;
+  }
+
+  .button-card:hover{
+    opacity: 1
+  }
+
   #profile-text {
     text-decoration: none;
     color: black;
