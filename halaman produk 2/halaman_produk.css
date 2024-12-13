@@ -1,0 +1,146 @@
+@import url(https://fonts.googleapis.com/css?family=Poppins);
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'poppins';
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+header {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background-color: #fff;
+    justify-content: center;
+}
+
+.back-button {
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: rgb(0, 0, 0);
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+h1 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #000000;
+}
+
+.grid-layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr; /* Left section takes 2x the space of the right */
+    gap: 20px;
+}
+
+.left-section, .right-section {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+.product-details, .order-total {
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.product-section {
+    display: flex;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd;
+}
+
+.product-image img {
+    width: 200px;
+    height: auto;
+    border-radius: 8px;
+}
+
+.product-details {
+    margin-left: 20px;
+}
+
+.product-details h2 {
+    font-size: 22px;
+    color: #333333;
+}
+
+.price {
+    font-size: 20px;
+    color: #333333;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.description {
+    color: #666666;
+    line-height: 1.6;
+    margin-top: 10px;
+}
+
+.quantity-input {
+    width: 50px;
+    padding: 5px;
+    margin-right: 10px;
+    text-align: center;
+}
+
+.order-total h2 {
+    margin-bottom: 10px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.product-total, .total {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    font-size: 16px;
+}
+
+.total {
+    font-weight: bold;
+}
+
+.button-container{
+    display: grid;
+    grid-template-columns: auto;
+    overflow-x: auto;
+    padding: 20px 0;
+    gap: 15px;
+    justify-content: center;
+}
+
+.update-button, .cart-button {
+    width: 100%;
+    padding: 12px;
+    background-color: #ffa500;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+}
