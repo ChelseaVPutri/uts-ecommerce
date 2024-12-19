@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add product</title>
+    <link rel="stylesheet" href="tambah_produk_2.css">
+</head>
+
+<body>
+    <header>
+        <button class="back-button">←</button>
+        <h1>Tambah Produk</h1>
+    </header>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="user-info">
+                <img src="avatar.png" alt="User Avatar" class="avatar">
+                <p class="user-name">JokoKopling</p>
+                <p class="user-email">jokokopling123@gmail.com</p>
+            </div>
+            <nav class="menu">
+                <a href="#" class="menu-item">Dashboard</a>
+                <a href="#" class="menu-item active">Tambah Produk</a>
+                <a href="#" class="menu-item">Daftar Produk</a>
+                <a href="#" class="menu-item">Daftar Pesanan</a>
+                <a href="#" class="menu-item">Pengaturan</a>
+            </nav>
+        </aside>
+        <main class="main-content">
+            <section class="add-product">
+                <h2>Tambah Produk</h2>
+                <form>
+                    <input type="text" placeholder="Masukkan nama produk" required>
+                    <input type="number" placeholder="Masukkan harga produk" required>
+                    <input type="text" placeholder="Masukan deskripsi produk" required>
+                    <input type="file" placeholder="Masukkan gambar produk">
+                    <input type="number" placeholder="Masukan stock produk" required>
+                    <select name="kategori" id="kategori" aria-placeholder="pilih kategori" style="color: grey;">
+                        <option value="" disabled selected>pilih kategori</option>
+                        <option value="kategori[1]">kategori 1</option>
+                        <option value="kategori[2]">kategori 2</option>
+                        <option value="kategori[3]">kategori 3</option>
+                        <option value="kategori[4]">kategori 4</option>
+                    </select>
+                    <input type="file" id="product-image-upload" accept="image/*" hidden>
+                    <button type="submit" class="add-button">Tambah Produk</button>
+                </form>
+            </section>
+        </main>
+        <aside class="highlights">
+            <h2>Highlight</h2>
+            <p>Produk Terlaris Bulan Ini!</p>
+            <div class="highlight-item">
+                <img src="chair.png" alt="Product">
+                <p>Frasser Kursi Kantor Jaring Kursi Staff Kursi Kerja 800 Abu - 800 Abu</p>
+                <span>Terjual sebanyak 54</span>
+            </div>
+            <div class="highlight-item">
+                <img src="chair.png" alt="Product">
+                <p>Frasser Kursi Kantor Jaring Kursi Staff Kursi Kerja 800 Abu - 800 Abu</p>
+                <span>Terjual sebanyak 54</span>
+            </div>
+        </aside>
+    </div>
+</body>
+</html>
