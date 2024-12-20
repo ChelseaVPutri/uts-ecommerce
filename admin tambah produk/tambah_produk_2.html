@@ -34,7 +34,16 @@
                     <input type="text" placeholder="Masukkan nama produk" required>
                     <input type="number" placeholder="Masukkan harga produk" required>
                     <input type="text" placeholder="Masukan deskripsi produk" required>
-                    <input type="file" placeholder="Masukkan gambar produk">
+                    <input accept="image/*" type="file" id="imgInp" placeholder="Masukkan gambar produk">
+                    <img id="blah">
+                    <script>
+                        imgInp.onchange = evt => {
+                    const [file] = imgInp.files
+                    if (file) {
+                        blah.src = URL.createObjectURL(file)
+                        }
+                    }
+                    </script>
                     <input type="number" placeholder="Masukan stock produk" required>
                     <select name="kategori" id="kategori" aria-placeholder="pilih kategori" style="color: grey;">
                         <option value="" disabled selected>pilih kategori</option>
