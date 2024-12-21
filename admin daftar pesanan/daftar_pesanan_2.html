@@ -74,29 +74,6 @@
                                         <button id="closePopup" class="button-card">Close</button>
                                     </div>
                                 </div>
-                                <script>
-                                    document.addEventListener("DOMContentLoaded", function () {
-                                        const myButton = document.getElementById("myButton");
-                                        const popupContainer = document.getElementById("popupContainer");
-                                        const closePopup = document.getElementById("closePopup");
-
-                                        myButton.addEventListener("click", function () {
-                                            popupContainer.classList.add("show");
-                                        });
-
-                                        closePopup.addEventListener("click", function () {
-                                            popupContainer.classList.remove("show");
-                                        });
-
-                                        window.addEventListener("click", function (event) {
-                                            if (event.target === popupContainer) {
-                                                popupContainer.classList.remove("show");
-                                            }
-                                        });
-                                    });
-
-
-                                </script>
                             </div>
                         </div>
                     </div>
@@ -123,5 +100,26 @@
             </div>
         </aside>
     </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const myButton = document.getElementById("myButton");
+            const popupContainer = document.getElementById("popupContainer");
+            const closePopup = document.getElementById("closePopup");
+
+            myButton.addEventListener("click", function () {
+                popupContainer.classList.add("show");
+            });
+
+            closePopup.addEventListener("click", function () {
+                popupContainer.classList.remove("show");
+            });
+
+            window.addEventListener("click", function (event) {
+                if (event.target === popupContainer) {
+                    popupContainer.classList.remove("show");
+                }
+            });
+        });
+    </script>
 </body>
 </html>
