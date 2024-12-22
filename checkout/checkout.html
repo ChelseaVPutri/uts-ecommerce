@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <link rel="stylesheet" href="checkout.css">
+</head>
+<body>
+    <header>
+        <button class="back-button">←</button>
+        <h1>Checkout</h1>
+    </header>
+    <div class="container">
+        <main class="grid-layout">
+            <section class="left-section">
+                <div class="shipping-address">
+                    <h2>Alamat Pengiriman</h2>
+                    <div class="address">
+                        <span class="icon">📍</span>
+                        <span>Rumah - Budi</span>
+                    </div>
+                    <button id="myButton" class="shipping-button">ganti alamat</button>
+                    <div id="popupContainer" class="popup">
+                        <div class="address-box">
+                            <button id="closePopup" class="close-button2">close</button>
+                            <h1>Ganti alamat</h1>
+                            <div class="address-details">
+                              <div class="name-and-phone">
+                                <h2>Budi</h2>
+                                <span>(+62) 812 3456 7891</span>
+                                <button id="myButton2" class="edit-button">Ubah</button>
+                                <div id="popupContainer2" class="popup">
+                                    <div class="edit-address-box">
+                                        
+                                        <h1>Ubah Alamat</h1>
+                                        <form>
+                                            <div class="input-group">
+                                                <input type="text" value="Budi" />
+                                                <input type="text" value="(+62) 812 3456 7891" />
+                                            </div>
+                                            <div class="input-group">
+                                                <input type="text" value="DKI JAKARTA"  />
+                                                <input type="text" value="KOTA JAKARTA TIMUR"  />
+                                            </div>
+                                            <div class="input-group">
+                                                <input type="text" value="MAKASAR"  />
+                                                <input type="text" value="KEBON PALA"  />
+                                                <input type="text" value="13650"  />
+                                            </div>
+                                            <textarea>jalan inpres no.40b, kebon pala, makasar jakarta timur, Makasar, Jakarta Timur, DKI Jakarta</textarea>
+                                            <div class="button-group">
+                                                <button id="closePopup2" type="button" class="back-button-box">Kembali</button>
+                                                <button type="submit" class="ok-button-box">OK</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                              </div>
+                              <p>jalan inpres no.40b, kebon pala, makasar jakarta timur, Makasar, Jakarta Timur, DKI Jakarta, 6281234567891</p>
+                              <p>MAKASAR, KOTA JAKARTA TIMUR, DKI JAKARTA, ID, 13650</p>
+                            </div>
+                            <button id="myButton3" class="add-address-button">+ Tambah Alamat Baru</button>
+                            <div id="popupContainer3" class="popup">
+                                <div class="edit-address-box">
+                                    
+                                    <h1>Tambah Alamat</h1>
+                                    <form>
+                                        <div class="input-group">
+                                            <input type="text" value="Nama Lengkap" />
+                                            <input type="text" value="Nomor Telefon" />
+                                        </div>
+                                        <div class="input-group">
+                                            <input type="text" value="Provinsi"  />
+                                            <input type="text" value="Kota"  />
+                                        </div>
+                                        <div class="input-group">
+                                            <input type="text" value="Kecamatan"  />
+                                            <input type="text" value="Kelurahan"  />
+                                            <input type="text" value="Kode Pos"  />
+                                        </div>
+                                        <textarea>Nama Jalan (detail alamat)</textarea>
+                                        <div class="button-group">
+                                            <button id="closePopup3" type="button" class="back-button-box">Kembali</button>
+                                            <button type="submit" class="ok-button-box">OK</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                          </div>
+                    </div>
+                </div>
+                <div class="product-details">
+                    <img src="chair.jpg" alt="Frasser Kursi Kantor" class="product-image">
+                    <div class="product-info">
+                        <p>Frasser Kursi Kantor Jaring Kursi Staff Kursi Kerja 800 Abu - 800 Abu</p>
+                        <form>
+                            <select name="kategori" id="kategori" aria-placeholder="pilih pengiriman" style="color: grey;">
+                                <option value="" disabled selected>pilih pengiriman</option>
+                                <option value="kategori[1]">pengiriman 1</option>
+                                <option value="kategori[2]">pengiriman 2</option>
+                                <option value="kategori[3]">pengiriman 3</option>
+                                <option value="kategori[4]">pengiriman 4</option>
+                            </select>
+                        </form>
+                    </div>
+                    <p style="font-weight: bold;">5 x Rp5.000</p>
+                </div>
+                <div class="product-details">
+                    <img src="chair.jpg" alt="Frasser Kursi Kantor" class="product-image">
+                    <div class="product-info">
+                        <p>Frasser Kursi Kantor Jaring Kursi Staff Kursi Kerja 800 Abu - 800 Abu</p>
+                        <form>
+                            <select name="kategori" id="kategori" aria-placeholder="pilih pengiriman" style="color: grey;">
+                                <option value="" disabled selected>pilih pengiriman</option>
+                                <option value="kategori[1]">pengiriman 1</option>
+                                <option value="kategori[2]">pengiriman 2</option>
+                                <option value="kategori[3]">pengiriman 3</option>
+                                <option value="kategori[4]">pengiriman 4</option>
+                            </select>
+                        </form>
+                    </div>
+                    <p style="font-weight: bold;">1 x Rp100.000</p>
+                </div>
+            </section>
+            <section class="right-section order-summary">
+                <h2>Belanjaanmu</h2>
+                <div class="order-detail">
+                    <span>Total harga (1 barang)</span>
+                    <span>Rp259.900</span>
+                </div>
+                <div class="order-detail">
+                    <span>Total Asuransi Pengiriman</span>
+                    <span>-</span>
+                </div>
+                <div class="order-detail">
+                    <span>Total Biaya Proteksi</span>
+                    <span>-</span>
+                </div>
+                <div class="total">
+                    <span>Total Belanja</span>
+                    <span>Rp259.900</span>
+                </div>
+                <button id="myButton4" class="payment-button">Pilih Pembayaran</button>
+                <div id="popupContainer4" class="popup">
+                    <div class="payment-method-box">
+                        <button id="closePopup4" class="close-button2">Close</button>
+                        <h1>Metode Pembayaran</h1>
+                        <ul class="payment-options">
+                          <li class="payment-option selected">
+                            <h2>COD</h2>
+                            <p>Estimasi tiba hari ini - 14 Dec</p>
+                          </li>
+                          <li class="payment-option">
+                            <h2>Transfer Bank</h2>
+                            <p>Estimasi tiba hari ini - 14 Dec</p>
+                          </li>
+                          <li class="payment-option">
+                            <h2>Mitra/Agen</h2>
+                            <p>Estimasi tiba hari ini - 14 Dec</p>
+                          </li>
+                        </ul>
+                        <button class="pay-button">Bayar</button>
+                      </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const myButton = document.getElementById("myButton");
+            const popupContainer = document.getElementById("popupContainer");
+            const closePopup = document.getElementById("closePopup");
+
+            const myButton2 = document.getElementById("myButton2");
+            const popupContainer2 = document.getElementById("popupContainer2");
+            const closePopup2 = document.getElementById("closePopup2");
+
+            const myButton3 = document.getElementById("myButton3");
+            const popupContainer3 = document.getElementById("popupContainer3");
+            const closePopup3 = document.getElementById("closePopup3");
+
+            const myButton4 = document.getElementById("myButton4");
+            const popupContainer4 = document.getElementById("popupContainer4");
+            const closePopup4 = document.getElementById("closePopup4");
+
+            myButton4.addEventListener("click", function(){
+                popupContainer4.classList.add("show")
+            });
+
+            closePopup4.addEventListener("click", function(){
+                popupContainer4.classList.remove("show")
+            });
+
+            window.addEventListener("click", function(event){
+                if(event.target === popupContainer4){
+                    popupContainer4.classList.remove("show");
+                }
+            });
+
+            myButton3.addEventListener("click", function(){
+                popupContainer3.classList.add("show")
+            });
+
+            closePopup3.addEventListener("click", function(){
+                popupContainer3.classList.remove("show")
+            });
+
+            window.addEventListener("click", function(event){
+                if(event.target === popupContainer3){
+                    popupContainer3.classList.remove("show");
+                }
+            });
+
+            myButton2.addEventListener("click", function(){
+                popupContainer2.classList.add("show")
+            });
+
+            closePopup2.addEventListener("click", function(){
+                popupContainer2.classList.remove("show")
+            });
+
+            window.addEventListener("click", function(event){
+                if(event.target === popupContainer2){
+                    popupContainer2.classList.remove("show");
+                }
+            });
+
+            myButton.addEventListener("click", function () {
+                popupContainer.classList.add("show");
+            });
+
+            closePopup.addEventListener("click", function () {
+                popupContainer.classList.remove("show");
+            });
+
+            window.addEventListener("click", function (event) {
+                if (event.target === popupContainer) {
+                    popupContainer.classList.remove("show");
+                }
+            });
+        });
+    </script>
+</body>
+</html>
