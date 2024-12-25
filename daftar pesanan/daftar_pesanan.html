@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daftar Pesanan</title>
+    <link rel="stylesheet" href="daftar_pesanan.css">
+</head>
+<body>
+    <header>
+        <button class="back-button">&larr;</button>
+        <h1>Daftar Pesanan</h1>
+    </header>
+    <div class="container">
+        <div class="search-bar">
+            <input type="text" placeholder="Cari daftar pesanan">
+            <button class="search-button">&#128269;</button>
+        </div>
+        <div class="order-list">
+            <div class="order-item">
+                <img src="chair-image.jpg" alt="Frasser Chair">
+                <div class="order-details">
+                    <h2>Frasser Kursi Kantor Jaring Kursi Staff Kursi Kerja 800 Abu - 800 Abu</h2>
+                    <p>1 x <span class="price">Rp259.900</span></p>
+                    <p class="date">25 Des 2024 <span class="status">Selesai</span></p>
+                </div>
+                <div class="order-actions">
+                    <p class="total">Total Belanja: <span>Rp259.900</span></p>
+                    <button id="myButton" class="details-button">Detail Pesanan</button>
+                    <div id="popupContainer" class="popup">
+                        <div class="order-summary">
+                            <button id="closePopup" type="button" class="back-button-box">close</button>
+                            <h1 class="title">Daftar Pesanan</h1>
+                            <div class="order-status">
+                              <h3>Pesanan Selesai</h3>
+                              <p><strong>Tanggal Pembelian:</strong> 25 Desember 2024</p>
+                              <p><strong>Status pesanan:</strong> Selesai</p>
+                            </div>
+                        
+                            <div class="product-detail">
+                              <h3>Detail Produk</h3>
+                              <div class="product-box">
+                                <img src="chair.jpg" alt="Product Image" class="product-image">
+                                <div class="product-details">
+                                  <p class="product-title">Frasser Kursi Kantor Jaring Kursi Staff Kursi Kerja 800 Abu - 800 Abu</p>
+                                  <p class="product-quantity">1x</p>
+                                </div>
+                              </div>
+                            </div>
+                        
+                            <div class="payment-detail">
+                              <h4>Rincian Pembayaran</h4>
+                              <p><strong>Metode Pembayaran:</strong> Cash On Delivery</p>
+                              <p><strong>Subtotal harga barang:</strong> Rp259.900</p>
+                              <p><strong>Total ongkos kirim:</strong> Rp0</p>
+                              <p><strong>Total proteksi produk:</strong> Rp0</p>
+                              <p class="total"><strong>Total Belanja:</strong> Rp259.000</p>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="buy-again-button">Beli Lagi</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const myButton = document.getElementById("myButton");
+            const popupContainer = document.getElementById("popupContainer");
+            const closePopup = document.getElementById("closePopup");
+
+            myButton.addEventListener("click", function () {
+                popupContainer.classList.add("show");
+            });
+
+            closePopup.addEventListener("click", function () {
+                popupContainer.classList.remove("show");
+            });
+
+            window.addEventListener("click", function (event) {
+                if (event.target === popupContainer) {
+                    popupContainer.classList.remove("show");
+                }
+            });
+        });
+    </script>
+</body>
+</html>
